@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle Game ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: #ffe6f2;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            margin-top: 40px;
+            color: #b30059;
+            font-size: 2.4rem;
+        }
+
+        #puzzle-container {
+            width: 500px;
+            height: 400px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 4px;
+        }
+
+        .tile {
+            width: 100%;
+            height: 100%;
+            background-image: url("puzzle-placeholder.jpg"); /* Replace this */
+            background-size: 500px 400px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 1.6rem;
+            color: #b30059;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        a.back {
+            display: block;
+            margin-top: 40px;
+            font-size: 1.1rem;
+            color: #b30059;
+            text-decoration: none;
+        }
+
+        a.back:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Solve the Puzzle ❤️</h1>
+
+<div id="puzzle-container"></div>
+
+<div id="message">CONGRATS_PLACEHOLDER</div>
+
+<a class="back" href="index.html">⬅ Back to Home</a>
+
+<script>
+const rows = 4;
+const cols = 5;
+const container = document.getElementById("puzzle-container");
+const message = document.getElementById("message");
+
+let tiles = [];
+let solved = false;
+
+// Create 20 tiles
+for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+        const tile = document.createElement("div");
+        tile.classList.add("tile");
+
+        // Set background position for each tile
+        tile.style.backgroundPosition = `-${c * 100}px -${r * 100}px`;
+
+        // Random rotation (0, 90, 180, 270)
+        let rotation = [0, 90, 180, 270][Math.floor(Math.random() * 4)];
+        tile.dataset.rotation = rotation;
+        tile.style.transform = `rotate(${rotation}deg)`;
+
+        tile.addEventListener("click", () => {
+            if (solved) return;
+
+            // Rotate tile 90 degrees
+            rotation = (rotation + 90) % 360;
+            tile.dataset.rotation = rotation;
+            tile.style.transform = `rotate(${rotation}deg)`;
+
+            checkSolved();
+        });
+
+        container.appendChild(tile);
+        tiles.push(tile);
+    }
+}
+
+function checkSolved() {
+    const allCorrect = tiles.every(tile => tile.dataset.rotation == 0);
+
+    if (allCorrect) {
+        solved = true;
+        message.style.opacity = 1;
+    }
+}
+</script>
+
+</body>
+</html>
