@@ -31,6 +31,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             animation: fadeSlide 1.5s ease-out;
             text-align: center;
+            transform: rotate(var(--rotation));
         }
 
         .polaroid img {
@@ -39,11 +40,12 @@
             animation: photoPop 1.5s ease-out;
         }
 
-        /* Optional caption area (blank for now) */
+        /* Handwritten-style captions */
         .caption {
-            margin-top: 10px;
-            font-size: 1rem;
-            color: #555;
+            margin-top: 12px;
+            font-size: 1.1rem;
+            color: #444;
+            font-family: "Comic Sans MS", "Bradley Hand", cursive;
             font-style: italic;
         }
 
@@ -109,33 +111,33 @@
 <h1>Our Memories ❤️</h1>
 
 <!-- POLAROID 1 -->
-<div class="polaroid">
+<div class="polaroid" style="--rotation: -3deg;">
     <img src="yourphoto1.jpg" alt="Memory 1">
-    <div class="caption"></div>
+    <div class="caption">Our first moment together</div>
 </div>
 
 <!-- POLAROID 2 -->
-<div class="polaroid">
+<div class="polaroid" style="--rotation: 2deg;">
     <img src="yourphoto2.jpg" alt="Memory 2">
-    <div class="caption"></div>
+    <div class="caption">You looked so beautiful here</div>
 </div>
 
 <!-- POLAROID 3 -->
-<div class="polaroid">
+<div class="polaroid" style="--rotation: -2deg;">
     <img src="yourphoto3.jpg" alt="Memory 3">
-    <div class="caption"></div>
+    <div class="caption">One of my favorite days</div>
 </div>
 
 <!-- POLAROID 4 -->
-<div class="polaroid">
+<div class="polaroid" style="--rotation: 3deg;">
     <img src="yourphoto4.jpg" alt="Memory 4">
-    <div class="caption"></div>
+    <div class="caption">This moment still makes me smile</div>
 </div>
 
 <!-- POLAROID 5 -->
-<div class="polaroid">
+<div class="polaroid" style="--rotation: -1deg;">
     <img src="yourphoto5.jpg" alt="Memory 5">
-    <div class="caption"></div>
+    <div class="caption">I’m so lucky to have you</div>
 </div>
 
 <a class="back" href="index.html">⬅ Back to Home</a>
@@ -160,4 +162,8 @@ function createHeart() {
     }, 6000);
 }
 
-setInterval(create
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
