@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy One Month ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            color: #333;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .container {
+            padding-top: 120px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #b30059;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #b30059;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+            animation: bounceGlow 2s infinite, fadeInOut 4s infinite;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes bounceGlow {
+            0%, 100% { transform: translateY(0); box-shadow: 0 0 10px #ff66a3; }
+            50% { transform: translateY(-10px); box-shadow: 0 0 20px #ff99c2; }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Happy One Month Anniversary Love! ❤️</h1>
+    <a class="btn" href="gift.html">Open Your Surprise 🎁</a>
+</div>
+
+</body>
+</html>
