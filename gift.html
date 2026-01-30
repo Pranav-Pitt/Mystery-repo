@@ -81,6 +81,24 @@
             animation: floatUp 6s linear infinite;
         }
 
+        .question-btn {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background: #b30059;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            animation: bounceGlow 2s infinite, fadeInOut 4s infinite;
+            transition: 0.3s;
+        }
+
+.question-btn:hover {
+    transform: scale(1.1);
+}
+
+
         @keyframes floatUp {
             0% { transform: translateY(0) scale(1); opacity: 0.9; }
             100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
