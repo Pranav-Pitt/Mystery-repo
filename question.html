@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>A Question For You, But Before That... ❤️</title>
+    <title>A Question For You ❤️</title>
     <style>
         body {
             margin: 0;
@@ -23,7 +23,7 @@
             100% { transform: translateY(-120vh); opacity: 0; }
         }
 
-        /* Fullscreen red overlay */
+        /* Final red screen */
         #final-screen {
             position: fixed;
             top: 0;
@@ -42,7 +42,25 @@
 
         #final-screen h1 {
             font-size: 3rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+        }
+
+        /* Bouquet images */
+        .bouquet {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        #bouquet-left {
+            left: 10px;
+        }
+
+        #bouquet-right {
+            right: 10px;
         }
 
         .btn {
@@ -77,7 +95,7 @@
 let heartsCollected = 0;
 const totalHearts = 14;
 
-/* Create floating hearts */
+/* Spawn floating hearts */
 function spawnHeart() {
     if (heartsCollected >= totalHearts) return;
 
@@ -106,13 +124,26 @@ function spawnHeart() {
 
 setInterval(spawnHeart, 700);
 
+
 /* Final Valentine screen */
 function triggerFinalScreen() {
     const finalScreen = document.createElement("div");
     finalScreen.id = "final-screen";
 
     finalScreen.innerHTML = `
+        <img id="bouquet-left" class="bouquet" src="bouquet-left.png">
+        <img id="bouquet-right" class="bouquet" src="bouquet-right.png">
+
         <h1>Will You Be My Valentine?</h1>
+
+        <div id="messageBox" style="
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            height: 30px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        "></div>
+
         <div>
             <button id="yesBtn" class="btn">YES</button>
             <button id="noBtn" class="btn">NO</button>
@@ -124,13 +155,40 @@ function triggerFinalScreen() {
 
     const yesBtn = finalScreen.querySelector("#yesBtn");
     const noBtn = finalScreen.querySelector("#noBtn");
+    const messageBox = finalScreen.querySelector("#messageBox");
 
     let yesSize = 1;
 
+    /* Messages for NO button */
+    const noMessages = [
+        "Hey stop...",
+        "Wrong Answer",
+        "I think your finger slipped...",
+        "SHREE :("
+    ];
+
+    let usedMessages = [];
+
     noBtn.addEventListener("click", () => {
+        // Grow YES button
         yesSize += 0.3;
         yesBtn.style.transform = `scale(${yesSize})`;
 
+        // Pick a non-repeated message
+        if (usedMessages.length < noMessages.length) {
+            let available = noMessages.filter(m => !usedMessages.includes(m));
+            let chosen = available[Math.floor(Math.random() * available.length)];
+            usedMessages.push(chosen);
+
+            messageBox.innerText = chosen;
+            messageBox.style.opacity = 1;
+
+            setTimeout(() => {
+                messageBox.style.opacity = 0;
+            }, 1500);
+        }
+
+        // Hide NO button if YES gets too big
         if (yesSize >= 2.5) {
             noBtn.style.display = "none";
         }
